@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
+
 const TodoList = () => {
+  const todos = useSelector(state => state.todos);
+
   return (
     <div>
-      Todos
+      Todos: {todos.length}
     </div>
   )
 }
