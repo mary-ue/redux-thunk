@@ -1,3 +1,5 @@
+import { client } from '../../api';
+
 export const ADD_TODOS = 'ADD_TODOS';
 
 const addTodos = (todos) => ({
@@ -6,7 +8,7 @@ const addTodos = (todos) => ({
 });
 
 export const loadTodos = () => (dispatch) => {
-  fetch('https://jsonplaceholder.typicode.com/todos')
-    .then((res) => res.json())
-    .then((todos) => dispatch(addTodos(todos)));
+  client.get('https://jsonplaceholder.typicode.com/todos')
+    .then((todos) => dispatch(addTodos(todos)))
+    .catch((error) => console.error(error));
 };
