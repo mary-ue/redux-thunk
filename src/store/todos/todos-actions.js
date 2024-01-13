@@ -1,5 +1,3 @@
-import { client } from '../../api';
-
 export const ADD_TODOS = '@@todos/ADD_TODOS';
 export const SET_LOADING = '@@todos/SET_LOADING';
 export const SET_ERROR = '@@todos/SET_ERROR';
@@ -24,7 +22,7 @@ const setError = (error) => ({
   payload: error,
 });
 
-export const loadTodos = () => (dispatch) => {
+export const loadTodos = () => (dispatch, _, client) => {
   dispatch(setLoading());
 
   client
@@ -33,7 +31,7 @@ export const loadTodos = () => (dispatch) => {
     .catch((error) => dispatch(setError(error)));
 };
 
-export const createTodo = (title) => (dispatch) => {
+export const createTodo = (title) => (dispatch, _, client) => {
   client.post('https://jsonplaceholder.typicode.com/todos', {
     title,
     completed: false,

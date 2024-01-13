@@ -3,10 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
 
 import {rootReducer} from './root-reducer'
+import { client } from '../api';
 
 export const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk.withExtraArgument(client)), // Thunk extraArgument
   )
 )

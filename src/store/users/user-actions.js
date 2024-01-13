@@ -5,8 +5,7 @@ const addUsers = (users) => ({
   payload: users,
 })
 
-export const loadUsers = () => (dispatch) => {
-  fetch('https://jsonplaceholder.typicode.com/users')
-    .then(res => res.json())
+export const loadUsers = () => (dispatch, _, client) => {
+  client.get('https://jsonplaceholder.typicode.com/users')
     .then(data => dispatch(addUsers(data)))
 }
